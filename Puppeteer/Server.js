@@ -9,6 +9,6 @@ const server = http.createServer((req, res) => {
   res.end('');
 });
 
-var principal = require("./Principal/principal.js");
+var principal = require("./Principal/principal");
 
 principal.printScreen();
