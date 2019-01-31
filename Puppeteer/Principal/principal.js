@@ -1,10 +1,26 @@
 var puppeteer = require('puppeteer');
  
+//module exports para oder usar em outras partes
 module.exports = {
-    printScreen : async function() {
+    ObterOfertas : async function() {
         const browser = await puppeteer.launch({ headless: false });
         const page = await browser.newPage();
         await page.setViewport({width: 1050, height: 1040});
+       
+        //página de logon
+        await page.goto('https://www.mercadolivre.com/jms/mlb/lgz/login?go=https%3A%2F%2Fwww.mercadolivre.com.br%2F&loginType=explicit#menu-user');
+
+        //login
+        page.type(" #login_user_form > div.auth-form__row > div > div > label > div.andes-form-control__control > span", 'testepuppeteer@gmail.com');
+       
+        //botão prosseguir
+        page.click('<input type="submit" class="ui-button ui-button--primary auth-button auth-button--user" value="Continuar">');
+
+        page.waitFor(500);
+        //senha
+        //page.type('<input type="submit" class="ui-button ui-button--primary auth-button auth-button--user" value="Continuar">', text[, options])
+
+
         await page.goto('https://lista.mercadolivre.com.br/s9-galaxy-plus-128gb_OrderId_PRICE_ItemTypeID_N_PriceRange_2500-0_BestSellers_YES');          
         await page.waitForSelector('.item__price')
         var listPrices = await page.$$('.item__price');
@@ -16,7 +32,6 @@ module.exports = {
         var url = "";
         var listOffers = [];    
         var element = null;
-
 
         for(var i = 0; i < listPrices.length; i++){     
             fraction = "";
