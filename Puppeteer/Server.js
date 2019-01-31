@@ -11,4 +11,4 @@ const server = http.createServer((req, res) => {
 
 var principal = require("./Principal/principal");
 
-principal.printScreen();
+principal.ObterOfertas();
