@@ -26,6 +26,8 @@ namespace Backend.Models
 
         public int? id_complementoPesquisa { get; set; }
 
+        public double nu_porcentagemMinimaDeLucro { get; set; }
+
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ComplementoPesquisa> ComplementoPesquisa { get; set; }
 

@@ -10,3 +10,15 @@ C:\Users\FamiliaVepo\Desktop\Workspace\LowTrader\Backend\obj\Debug\Backend.cspro
 C:\Users\FamiliaVepo\Desktop\Workspace\LowTrader\Backend\obj\Debug\Backend.csproj.CopyComplete
 C:\Users\FamiliaVepo\Desktop\Workspace\LowTrader\Backend\obj\Debug\Backend.dll
 C:\Users\FamiliaVepo\Desktop\Workspace\LowTrader\Backend\obj\Debug\Backend.pdb
+C:\Users\FamiliaVepo\Desktop\Workspace\Mercantile\Backend\bin\Debug\Backend.dll.config
+C:\Users\FamiliaVepo\Desktop\Workspace\Mercantile\Backend\bin\Debug\Backend.dll
+C:\Users\FamiliaVepo\Desktop\Workspace\Mercantile\Backend\bin\Debug\Backend.pdb
+C:\Users\FamiliaVepo\Desktop\Workspace\Mercantile\Backend\bin\Debug\EntityFramework.dll
+C:\Users\FamiliaVepo\Desktop\Workspace\Mercantile\Backend\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\FamiliaVepo\Desktop\Workspace\Mercantile\Backend\bin\Debug\EntityFramework.xml
+C:\Users\FamiliaVepo\Desktop\Workspace\Mercantile\Backend\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\FamiliaVepo\Desktop\Workspace\Mercantile\Backend\obj\Debug\Backend.csprojAssemblyReference.cache
+C:\Users\FamiliaVepo\Desktop\Workspace\Mercantile\Backend\obj\Debug\Backend.csproj.CoreCompileInputs.cache
+C:\Users\FamiliaVepo\Desktop\Workspace\Mercantile\Backend\obj\Debug\Backend.csproj.CopyComplete
+C:\Users\FamiliaVepo\Desktop\Workspace\Mercantile\Backend\obj\Debug\Backend.dll
+C:\Users\FamiliaVepo\Desktop\Workspace\Mercantile\Backend\obj\Debug\Backend.pdb

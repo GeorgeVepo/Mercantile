@@ -16,7 +16,7 @@ namespace Backend.Models
         [Column(TypeName = "smallmoney")]
         public decimal nu_valor { get; set; }
 
-        public DateTime st_oferta { get; set; }
+        public DateTime dt_oferta { get; set; }
 
         public int? id_produto { get; set; }
 

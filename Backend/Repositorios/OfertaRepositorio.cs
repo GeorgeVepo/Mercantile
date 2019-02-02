@@ -46,11 +46,40 @@ namespace Backend.Repositorios
             }
         }
 
+        public Boolean CompararComDemaisOfertas(decimal OfertaAtual, int idProduto)
+        {
+            using (Contexto contexto = new Contexto())
+            {
+                Oferta oferta = contexto.Oferta.Where(o => o.id_produto == idProduto &&
+                                     o.nu_valor < OfertaAtual &&
+                                     o.dt_oferta > DateTime.Now.AddMonths(-3)).FirstOrDefault();
+                return oferta == null;
+            }
+        }
+
+        public int ObterQuantidadeDeNotasDoPeriodo(int idProduto)
+        {
+            using (Contexto contexto = new Contexto())
+            {
+                return contexto.Oferta.Where(o => o.id_produto == idProduto && o.dt_oferta > DateTime.Now.AddMonths(-3)).Count(); ;
+            }
+        }
+
         public List<Oferta> ObterTodos(Func<Oferta, bool> expressao)
         {
             using (Contexto contexto = new Contexto())
             {
                 return contexto.Oferta.Where(expressao).ToList();
+            }
+        }
+
+        public int ObterQuantidadeDeNotasComValorInferior(decimal valorMinimoDeGrupo, int idProduto)
+        {
+            using (Contexto contexto = new Contexto())
+            {
+                return contexto.Oferta.Where(o => o.id_produto == idProduto && 
+                                                    o.dt_oferta > DateTime.Now.AddMonths(-3) 
+                                                    && o.nu_valor < valorMinimoDeGrupo).Count();
             }
         }
 
@@ -62,6 +91,15 @@ namespace Backend.Repositorios
                 contexto.SaveChanges();
             }
             return entity;
+        }
+
+        public void SalvarTodos(List<Oferta> entityList)
+        {
+            using (Contexto contexto = new Contexto())
+            {
+                contexto.Oferta.AddRange(entityList);
+                contexto.SaveChanges();
+            }
         }
     }
 }

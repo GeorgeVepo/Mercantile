@@ -10,6 +10,8 @@ namespace Backend.IRepositorio
     {
         E SalvarTodos(E entity);
 
+        void SalvarTodos(List<E> entityList);
+
         Boolean Excluir(E entity);
 
         E Editar(E entity);

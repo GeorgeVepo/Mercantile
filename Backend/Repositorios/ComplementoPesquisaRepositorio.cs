@@ -62,5 +62,14 @@ namespace Backend.IRepositorio
             }
             return entity;
         }
+
+        public void SalvarTodos(List<ComplementoPesquisa> entityList)
+        {
+            using (Contexto contexto = new Contexto())
+            {
+                contexto.ComplementoPesquisa.AddRange(entityList);
+                contexto.SaveChanges();
+            }
+        }
     }
 }

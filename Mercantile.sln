@@ -26,6 +26,8 @@ Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "Puppeteer", "Puppeteer\", "
 		SlnRelativePath = "Puppeteer\"
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Web", "WebApplication1\Web.csproj", "{351C17E8-D545-4070-AF51-AB7BDC2AE2DD}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -40,6 +42,10 @@ Global
 		{C62C58AC-0288-4048-A6CD-8077226AEB48}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C62C58AC-0288-4048-A6CD-8077226AEB48}.Release|Any CPU.ActiveCfg = Debug|Any CPU
 		{C62C58AC-0288-4048-A6CD-8077226AEB48}.Release|Any CPU.Build.0 = Debug|Any CPU
+		{351C17E8-D545-4070-AF51-AB7BDC2AE2DD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{351C17E8-D545-4070-AF51-AB7BDC2AE2DD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{351C17E8-D545-4070-AF51-AB7BDC2AE2DD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{351C17E8-D545-4070-AF51-AB7BDC2AE2DD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

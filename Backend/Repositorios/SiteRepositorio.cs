@@ -63,5 +63,14 @@ namespace Backend.Repositorios
             }
             return entity;
         }
+
+        public void SalvarTodos(List<Site> entityList)
+        {
+            using (Contexto contexto = new Contexto())
+            {
+                contexto.Site.AddRange(entityList);
+                contexto.SaveChanges();
+            }
+        }
     }
 }
