@@ -9,7 +9,8 @@ using System.Threading.Tasks;
 namespace Backend.IRepositorio
 {
     public class ProdutoRepositorio : IRepositorio<Produto>
-    {
+    {   
+
         public Produto Editar(Produto entity)
         {
             using (Contexto contexto = new Contexto())
@@ -45,6 +46,14 @@ namespace Backend.IRepositorio
             }
         }
 
+        public List<Produto> ObterTodosComFiltro()
+        {
+            using (Contexto contexto = new Contexto())
+            {
+                return contexto.Set<Produto>().Include(p => p.Filtro).ToList();
+            }
+        }
+
         public List<Produto> ObterTodos(Func<Produto, bool> expressao)
         {
             using (Contexto contexto = new Contexto())
@@ -69,6 +78,14 @@ namespace Backend.IRepositorio
             {
                 contexto.Produto.AddRange(entityList);
                 contexto.SaveChanges();
+            }
+        }
+
+        public void Dispose()
+        {
+            using (Contexto contexto = new Contexto())
+            {
+                contexto.Dispose();
             }
         }
     }

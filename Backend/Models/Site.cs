@@ -14,6 +14,10 @@ namespace Backend.Models
 
         [Required]
         [StringLength(500)]
+        public string nm_site { get; set; }
+
+        [Required]
+        [StringLength(500)]
         public string ds_url { get; set; }
 
         [StringLength(255)]
@@ -21,5 +25,8 @@ namespace Backend.Models
 
         [StringLength(255)]
         public string ds_senha { get; set; }
+
+        [Required]
+        public bool fl_ativo { get; set; }
     }
 }

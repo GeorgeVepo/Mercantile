@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Backend.Serviços
 {
-    class SiteServico : IServico<Site>
+    public class SiteServico : IServico<Site>
     {
         SiteRepositorio SiteRespositorio = new SiteRepositorio();
 
@@ -40,6 +40,16 @@ namespace Backend.Serviços
         public Site SalvarTodos(Site entity)
         {
             return SiteRespositorio.SalvarTodos(entity);
+        }
+
+        public void Dispose()
+        {
+            SiteRespositorio.Dispose();
+        }
+
+        public List<Site> ObterAtivos()
+        {
+            return SiteRespositorio.ObterAtivos();
         }
     }
 }

@@ -19,5 +19,7 @@ namespace Backend.Serviços
         List<E> ObterTodos();
 
         List<E> ObterTodos(Func<E, bool> expressao);
+
+        void Dispose();
     }
 }

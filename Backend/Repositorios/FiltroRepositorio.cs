@@ -71,5 +71,13 @@ namespace Backend.IRepositorio
                 contexto.SaveChanges();
             }
         }
+
+        public void Dispose()
+        {
+            using (Contexto contexto = new Contexto())
+            {
+                contexto.Dispose();
+            }
+        }
     }
 }

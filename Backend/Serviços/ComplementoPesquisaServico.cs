@@ -41,5 +41,10 @@ namespace Backend.Serviços
         {
             return ComplementoPesquisaRespositorio.SalvarTodos(entity);
         }
+
+        public void Dispose()
+        {
+            ComplementoPesquisaRespositorio.Dispose();
+        }
     }
 }

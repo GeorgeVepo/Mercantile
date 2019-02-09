@@ -41,6 +41,11 @@ namespace Backend.Serviços
         {
             return FiltroRespositorio.SalvarTodos(entity);
         }
+
+        public void Dispose()
+        {
+            FiltroRespositorio.Dispose();
+        }
     }
 }
 

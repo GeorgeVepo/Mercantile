@@ -46,6 +46,14 @@ namespace Backend.Repositorios
             }
         }
 
+        public void Dispose()
+        {
+            using (Contexto contexto = new Contexto())
+            {
+                contexto.Dispose();
+            }
+        }
+
         public Boolean CompararComDemaisOfertas(decimal OfertaAtual, int idProduto)
         {
             using (Contexto contexto = new Contexto())

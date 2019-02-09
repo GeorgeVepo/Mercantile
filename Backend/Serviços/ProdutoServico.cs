@@ -10,36 +10,47 @@ namespace Backend.Serviços
 {
     public class ProdutoServico : IServico<Produto>
     {
-        ProdutoRepositorio produtoRespositorio = new ProdutoRepositorio(); 
-
+        ProdutoRepositorio ProdutoRespositorio = new ProdutoRepositorio();
+                
         public Produto Editar(Produto entity)
         {
-            return produtoRespositorio.Editar(entity);
+            return ProdutoRespositorio.Editar(entity);
         }
 
         public bool Excluir(Produto entity)
         {
-            return produtoRespositorio.Excluir(entity);
+            return ProdutoRespositorio.Excluir(entity);
         }
 
         public Produto Obter(int id)
         {
-            return produtoRespositorio.Obter(id);
+            return ProdutoRespositorio.Obter(id);
         }
 
         public List<Produto> ObterTodos()
         {
-            return produtoRespositorio.ObterTodos();
+            return ProdutoRespositorio.ObterTodos();
         }
 
         public List<Produto> ObterTodos(Func<Produto, bool> expressao)
         {
-            return produtoRespositorio.ObterTodos(expressao);
+            return ProdutoRespositorio.ObterTodos(expressao);
+        }
+
+        public List<Produto> ObterTodosComFiltros()
+        {
+            return ProdutoRespositorio.ObterTodosComFiltro();
         }
 
         public Produto SalvarTodos(Produto entity)
         {
-            return produtoRespositorio.SalvarTodos(entity);
+            return ProdutoRespositorio.SalvarTodos(entity);
         }
+
+        public void Dispose()
+        {
+            ProdutoRespositorio.Dispose();
+        }
+
     }
 }

@@ -46,6 +46,14 @@ namespace Backend.Repositorios
             }
         }
 
+        internal List<Site> ObterAtivos()
+        {
+            using (Contexto contexto = new Contexto())
+            {
+                return contexto.Site.Where(s => s.fl_ativo).ToList();
+            }
+        }
+
         public List<Site> ObterTodos(Func<Site, bool> expressao)
         {
             using (Contexto contexto = new Contexto())
@@ -70,6 +78,14 @@ namespace Backend.Repositorios
             {
                 contexto.Site.AddRange(entityList);
                 contexto.SaveChanges();
+            }
+        }
+
+        public void Dispose()
+        {
+            using (Contexto contexto = new Contexto())
+            {
+                contexto.Dispose();
             }
         }
     }

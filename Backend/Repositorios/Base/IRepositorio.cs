@@ -1,0 +1,27 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Backend.IRepositorio
+{
+    public interface IRepositorio<E>
+    {
+        E SalvarTodos(E entity);
+
+        void SalvarTodos(List<E> entityList);
+
+        Boolean Excluir(E entity);
+
+        E Editar(E entity);
+
+        E Obter(int id);
+
+        List<E> ObterTodos();
+
+        List<E> ObterTodos(Func<E, bool> expressao);
+
+        void Dispose();
+    }
+}
