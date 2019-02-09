@@ -60,7 +60,7 @@ namespace Backend.Repositorios
             {
                 Oferta oferta = contexto.Oferta.Where(o => o.id_produto == idProduto &&
                                      o.nu_valor < OfertaAtual &&
-                                     o.dt_oferta > DateTime.Now.AddMonths(-3)).FirstOrDefault();
+                                     o.dt_oferta > DateTime.Now.AddDays(-40)).FirstOrDefault();
                 return oferta == null;
             }
         }
@@ -69,7 +69,7 @@ namespace Backend.Repositorios
         {
             using (Contexto contexto = new Contexto())
             {
-                return contexto.Oferta.Where(o => o.id_produto == idProduto && o.dt_oferta > DateTime.Now.AddMonths(-3)).Count(); ;
+                return contexto.Oferta.Where(o => o.id_produto == idProduto && o.dt_oferta > DateTime.Now.AddDays(-40)).Count(); ;
             }
         }
 
@@ -86,7 +86,7 @@ namespace Backend.Repositorios
             using (Contexto contexto = new Contexto())
             {
                 return contexto.Oferta.Where(o => o.id_produto == idProduto && 
-                                                    o.dt_oferta > DateTime.Now.AddMonths(-3) 
+                                                    o.dt_oferta > DateTime.Now.AddDays(-40) 
                                                     && o.nu_valor < valorMinimoDeGrupo).Count();
             }
         }
