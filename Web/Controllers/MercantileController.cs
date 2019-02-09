@@ -17,24 +17,27 @@ namespace Web.Controllers
         private ProdutoServico ProdutoServico = new ProdutoServico();
         private SiteServico SiteServico = new SiteServico();
 
-        // POST: api/Mercantile
+        // POST: api/Mercantile/InserirOfertasPesquisadas
         [ResponseType(typeof(HttpStatusCode))]
+        [ActionName("InserirOfertasPesquisadas")]
         public IHttpActionResult PostInserirOfertasPesquisadas(List<Oferta> listaOferta)
         {
             OfertaServico.AnalisarOfertas(listaOferta);
             return StatusCode(HttpStatusCode.OK);
         }
 
-        // GET: api/Mercantile
+        // GET: api/Mercantile/ObterProdutosParaPesquisa
         [ResponseType(typeof(List<Produto>))]
+        [ActionName("ObterProdutosParaPesquisa")]
         public IHttpActionResult GetObterProdutosParaPesquisa()
         {
             List<Produto> ListaProdutos = ProdutoServico.ObterTodosComFiltros();
             return Ok(ListaProdutos);
         }
 
-        // GET: api/Mercantile
+        // GET: api/Mercantile/ObterSitesAtivos
         [ResponseType(typeof(List<Site>))]
+        [ActionName("ObterSitesAtivos")]
         public IHttpActionResult GetObterSitesAtivos()
         {
             List<Site> ListaSite = SiteServico.ObterAtivos();

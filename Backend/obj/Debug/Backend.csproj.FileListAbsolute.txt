@@ -21,4 +21,3 @@ C:\Users\FamiliaVepo\Desktop\Workspace\Mercantile\Backend\obj\Debug\Backend.cspr
 C:\Users\FamiliaVepo\Desktop\Workspace\Mercantile\Backend\obj\Debug\Backend.csproj.CopyComplete
 C:\Users\FamiliaVepo\Desktop\Workspace\Mercantile\Backend\obj\Debug\Backend.dll
 C:\Users\FamiliaVepo\Desktop\Workspace\Mercantile\Backend\obj\Debug\Backend.pdb
-C:\Users\FamiliaVepo\Desktop\Workspace\Mercantile\Backend\obj\Debug\Backend.csprojAssemblyReference.cache
