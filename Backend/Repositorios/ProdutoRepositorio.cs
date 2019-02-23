@@ -50,7 +50,7 @@ namespace Backend.IRepositorio
         {
             using (Contexto contexto = new Contexto())
             {
-                return contexto.Set<Produto>().Include(p => p.Filtro).ToList();
+                return contexto.Set<Produto>().Include(p => p.Filtros).ToList();
             }
         }
 

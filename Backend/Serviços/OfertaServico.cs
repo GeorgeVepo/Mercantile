@@ -4,6 +4,7 @@ using Backend.Repositorios;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Net.Mail;
 using System.Text;
 using System.Threading.Tasks;
@@ -50,59 +51,69 @@ namespace Backend.Serviços
             OfertaRepositorio.Dispose();
         }
 
+        public void InserirOfertas(List<Oferta> listaOferta)
+        {
+            List<Oferta> ListaAux = new List<Oferta>();
+            foreach (Oferta oferta in listaOferta)
+            {
+                oferta.dt_oferta = DateTime.Now;
+                ListaAux.Add(oferta);
+            }
+          OfertaRepositorio.SalvarTodos(ListaAux);
+        }
+
         public void AnalisarOfertas(List<Oferta> listaOferta)
         {
-            decimal melhorOferta = listaOferta.Min(o => o.nu_valor);
+            decimal melhorOferta = listaOferta.Min(o => o.nu_preco);
             int idProduto = listaOferta[0].id_produto.Value;
             Boolean EMelhor = OfertaRepositorio.CompararComDemaisOfertas(melhorOferta, idProduto);
+            int totalOfertas = OfertaRepositorio.ObterQuantidadeDeNotasDoPeriodo(idProduto);
             Produto produto = produtoRepositorio.Obter(idProduto);
 
             if (EMelhor)
             {
-                double porcentualDeLucro = produto.nu_porcentagemMinimaDeLucro;
+                double porcentualDeLucro = double.Parse(produto.nu_porcentagemMinimaDeLucro.ToString());
                 double aux = porcentualDeLucro;
-                int totalNotas = OfertaRepositorio.ObterQuantidadeDeNotasDoPeriodo(idProduto);
                 decimal valorSugeridoParaRevenda = 0;
                 double porcentualDeRevenda = 0;
 
-                ObterPercentualDeDiferencaOtimisado(melhorOferta, idProduto, totalNotas, 0.1, ref porcentualDeLucro, ref valorSugeridoParaRevenda, ref porcentualDeRevenda);
-                ObterPercentualDeDiferencaOtimisado(melhorOferta, idProduto, totalNotas, 0.01, ref porcentualDeLucro, ref valorSugeridoParaRevenda, ref porcentualDeRevenda);
-                ObterPercentualDeDiferencaOtimisado(melhorOferta, idProduto, totalNotas, 0.001, ref porcentualDeLucro, ref valorSugeridoParaRevenda, ref porcentualDeRevenda);
+                ObterPercentualDeDiferencaOtimisado(melhorOferta, idProduto, totalOfertas, 0.1, ref porcentualDeLucro, ref valorSugeridoParaRevenda, ref porcentualDeRevenda);
+                ObterPercentualDeDiferencaOtimisado(melhorOferta, idProduto, totalOfertas, 0.01, ref porcentualDeLucro, ref valorSugeridoParaRevenda, ref porcentualDeRevenda);
+                ObterPercentualDeDiferencaOtimisado(melhorOferta, idProduto, totalOfertas, 0.001, ref porcentualDeLucro, ref valorSugeridoParaRevenda, ref porcentualDeRevenda);
 
                 if (porcentualDeLucro <= aux)
-                {
-                    OfertaRepositorio.SalvarTodos(listaOferta);
+                {                    
                     return;
                 }
                 else
                 {
-                    MailMessage mail = new MailMessage("george.vepo@hotmail.com", "george.vepog@gmail.com");
+
+                    //adsgarthgryjht424
+                    MailMessage mail = new MailMessage("mercantilevepo@gmail.com", "george.vepog@gmail.com, thati.oliveira14@gmail.com, richardvepogg@gmail.com");
                     SmtpClient client = new SmtpClient();
+                    client.UseDefaultCredentials = false;
+                    client.Credentials = new NetworkCredential("mercantilevepo@gmail.com", "mercantile123!");
                     client.Port = 25;
                     client.DeliveryMethod = SmtpDeliveryMethod.Network;
-                    client.UseDefaultCredentials = false;
                     client.Host = "smtp.gmail.com";
+                    client.EnableSsl = true;
                     mail.Subject = "Oferta Encontrada!";
-                    Oferta oferta = listaOferta.Where(l => l.nu_valor == melhorOferta).FirstOrDefault();
+                    Oferta oferta = listaOferta.Where(l => l.nu_preco == melhorOferta).FirstOrDefault();
                     mail.Body += "URL: " + oferta.ds_url + Environment.NewLine;
                     mail.Body += "Produto: " + produto.nm_produto + Environment.NewLine;
-                    mail.Body += "Valor: " + oferta.nu_valor + Environment.NewLine;
+                    mail.Body += "Valor: " + string.Format("{0:N}", (oferta.nu_preco * 1000)) + Environment.NewLine;
                     mail.Body += "Porcentagem de revenda: " + porcentualDeRevenda + Environment.NewLine;
-                    mail.Body += "Porcentagem de lucro: " + porcentualDeLucro + Environment.NewLine;
-                    mail.Body += "Valor sugerido de revenda: " + valorSugeridoParaRevenda + Environment.NewLine;
+                    mail.Body += "Porcentagem de lucro: " + porcentualDeLucro  + Environment.NewLine;
+                    mail.Body += "Valor sugerido de revenda: " + string.Format("{0:N}", (valorSugeridoParaRevenda * 1000)) + Environment.NewLine;
                     client.Send(mail);
                 }
 
-            } else
-            {
-                OfertaRepositorio.SalvarTodos(listaOferta);
             }
-
         }
 
         public double ObterPercentualDeDiferencaOtimisado(decimal melhorOferta, int idProduto, int TotalNotas, double percentualDeDescida,  ref double percentualDiferenca, ref decimal valorSugeridoParaRevenda, ref double percentualDeRevenda)
         {
-            int notasInclusasNoGrupo = 0;
+            double notasInclusasNoGrupo = 0;
             decimal auxiliar = 0;
             double percentualDeRevendaAux = 100;
             decimal valorMinimoDeGrupo = 0;
@@ -121,7 +132,7 @@ namespace Backend.Serviços
                 notasInclusasNoGrupo = OfertaRepositorio.ObterQuantidadeDeNotasComValorInferior(valorMinimoDeGrupo, idProduto);
                 auxiliar = 0;
                 auxiliar = decimal.Parse((notasInclusasNoGrupo / 100).ToString());
-                auxiliar = auxiliar * TotalNotas;
+                auxiliar = (auxiliar * 10) * TotalNotas;
                 auxiliar = 100 - auxiliar;
                 percentualDeRevendaAux = double.Parse(auxiliar.ToString());
             }

@@ -204,3 +204,5 @@ C:\Users\FamiliaVepo\Desktop\Workspace\Mercantile\Web\obj\Debug\Web.csproj.CoreC
 C:\Users\FamiliaVepo\Desktop\Workspace\Mercantile\Web\obj\Debug\Web.csproj.CopyComplete
 C:\Users\FamiliaVepo\Desktop\Workspace\Mercantile\Web\obj\Debug\Web.dll
 C:\Users\FamiliaVepo\Desktop\Workspace\Mercantile\Web\obj\Debug\Web.pdb
+C:\Users\FamiliaVepo\Desktop\Workspace\Mercantile\Web\bin\Swashbuckle.Core.dll
+C:\Users\FamiliaVepo\Desktop\Workspace\Mercantile\Web\bin\WebActivatorEx.dll

@@ -8,6 +8,7 @@ using System.Web.Http;
 using System.Web.Http.Description;
 using Backend.Models;
 using Backend.Serviços;
+using Web.Models;
 
 namespace Web.Controllers
 {
@@ -17,22 +18,26 @@ namespace Web.Controllers
         private ProdutoServico ProdutoServico = new ProdutoServico();
         private SiteServico SiteServico = new SiteServico();
 
-        // POST: api/Mercantile/InserirOfertasPesquisadas
+        // POST: api/Mercantile/EnviarOfertasPesquisadas
         [ResponseType(typeof(HttpStatusCode))]
-        [ActionName("InserirOfertasPesquisadas")]
-        public IHttpActionResult PostInserirOfertasPesquisadas(List<Oferta> listaOferta)
+        [ActionName("EnviarOfertas")]
+        public IHttpActionResult PostInserirOfertasPesquisadas(List<Oferta> listaOfertas)
         {
-            OfertaServico.AnalisarOfertas(listaOferta);
+             OfertaServico.InserirOfertas(listaOfertas);           
+            
+             OfertaServico.AnalisarOfertas(listaOfertas);                    
+
             return StatusCode(HttpStatusCode.OK);
         }
 
         // GET: api/Mercantile/ObterProdutosParaPesquisa
-        [ResponseType(typeof(List<Produto>))]
+        [ResponseType(typeof(List<ProdutoReq>))]
         [ActionName("ObterProdutosParaPesquisa")]
         public IHttpActionResult GetObterProdutosParaPesquisa()
         {
             List<Produto> ListaProdutos = ProdutoServico.ObterTodosComFiltros();
-            return Ok(ListaProdutos);
+            List<ProdutoReq> ListaProdutosAux = ProdutoReq.ConverterProdutosComFiltro(ListaProdutos);            
+            return Ok(ListaProdutosAux);
         }
 
         // GET: api/Mercantile/ObterSitesAtivos

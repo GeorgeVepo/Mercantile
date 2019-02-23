@@ -12,7 +12,7 @@ namespace Backend.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Filtro()
         {
-            Produto = new HashSet<Produto>();
+            Produtos = new HashSet<Produto>();
         }
 
         [Key]
@@ -22,10 +22,10 @@ namespace Backend.Models
         [StringLength(250)]
         public string nm_filtro { get; set; }
 
-        [Column(TypeName = "numeric")]
-        public decimal nu_valor { get; set; }
+        [StringLength(250)]
+        public string ds_valor { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Produto> Produto { get; set; }
+        public virtual ICollection<Produto> Produtos { get; set; }
     }
 }

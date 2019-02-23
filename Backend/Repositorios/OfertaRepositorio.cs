@@ -58,18 +58,20 @@ namespace Backend.Repositorios
         {
             using (Contexto contexto = new Contexto())
             {
+                DateTime periodo = DateTime.Now.AddDays(-40);
                 Oferta oferta = contexto.Oferta.Where(o => o.id_produto == idProduto &&
-                                     o.nu_valor < OfertaAtual &&
-                                     o.dt_oferta > DateTime.Now.AddDays(-40)).FirstOrDefault();
+                                     o.nu_preco > OfertaAtual &&
+                                     o.dt_oferta > periodo).FirstOrDefault();
                 return oferta == null;
             }
         }
 
         public int ObterQuantidadeDeNotasDoPeriodo(int idProduto)
         {
+            DateTime periodo = DateTime.Now.AddDays(-40);
             using (Contexto contexto = new Contexto())
             {
-                return contexto.Oferta.Where(o => o.id_produto == idProduto && o.dt_oferta > DateTime.Now.AddDays(-40)).Count(); ;
+                return contexto.Oferta.Where(o => o.id_produto == idProduto && o.dt_oferta > periodo).Count(); ;
             }
         }
 
@@ -83,11 +85,12 @@ namespace Backend.Repositorios
 
         public int ObterQuantidadeDeNotasComValorInferior(decimal valorMinimoDeGrupo, int idProduto)
         {
+            DateTime periodo = DateTime.Now.AddDays(-40);
             using (Contexto contexto = new Contexto())
             {
                 return contexto.Oferta.Where(o => o.id_produto == idProduto && 
-                                                    o.dt_oferta > DateTime.Now.AddDays(-40) 
-                                                    && o.nu_valor < valorMinimoDeGrupo).Count();
+                                                    o.dt_oferta > periodo
+                                                    && o.nu_preco < valorMinimoDeGrupo).Count();
             }
         }
 

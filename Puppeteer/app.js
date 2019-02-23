@@ -1,27 +1,23 @@
-/* const http = require('http');
 
-const hostname = '127.0.0.1';
-const port = 3000;
-
-const server = http.createServer((req, res) => {
-  res.statusCode = 200;
-  res.setHeader('Content-Type', 'text/plain');
-  res.end('');
-}); */
-var Client = require("./RestClient/client");
-var MercadoLivre = require("./Mercado Livre/Principal/principal");
-
-/**
- ** Change to the examples directory so this program can run as a service.
- **/
-process.chdir(__dirname);
-
+var client = require("./RestClient/client");
 var fs = require ("fs");
 var service = require ("os-service");
+var mercadoLivre = require('./Mercado Livre/Principal/principal.js');
 
 function usage () {
-	Client.ObterProdutos();
+	var urlBase = client.ObterURLBase();
+	client.ObterSites(urlBase, executarMonitoramento);	
 }
+
+function executarMonitoramento(sites) {	
+		sites.forEach(site => {
+			if(site.nm_site == "Mercado Livre"){
+				mercadoLivre.ExecutarMonitoramento();
+			}
+		});	
+  }
+
+
 
 if (process.argv[2] == "--add" && process.argv.length >= 4) {
 	var options = {
@@ -57,7 +53,7 @@ if (process.argv[2] == "--add" && process.argv.length >= 4) {
 	// our log file
 	setInterval (function () {
 		usage();
-	}, 60000);
+	}, 7200000);
 } else {
 	usage ();
 }

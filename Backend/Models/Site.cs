@@ -17,7 +17,7 @@ namespace Backend.Models
         public string nm_site { get; set; }
 
         [Required]
-        [StringLength(500)]
+        [StringLength(1000)]
         public string ds_url { get; set; }
 
         [StringLength(255)]

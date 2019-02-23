@@ -11,12 +11,12 @@ namespace Backend.Models
     {
        
         [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.None)]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int id_oferta { get; set; }
 
         [Required]
         [Column(TypeName = "smallmoney")]
-        public decimal nu_valor { get; set; }
+        public decimal nu_preco { get; set; }
 
         [Required]
         public DateTime dt_oferta { get; set; }
@@ -28,6 +28,6 @@ namespace Backend.Models
         [Required]
         public int? id_produto { get; set; }
 
-        public virtual Produto Produto { get; set; }
+        public virtual Produto Produtos { get; set; }
     }
 }
