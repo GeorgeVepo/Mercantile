@@ -3,6 +3,7 @@ var client = require("./RestClient/client");
 var fs = require ("fs");
 var service = require ("os-service");
 var mercadoLivre = require('./Mercado Livre/Principal/principal.js');
+var zoom = require('./Zoom/Principal/principal.js');
 
 function usage () {
 	var urlBase = client.ObterURLBase();
@@ -10,6 +11,7 @@ function usage () {
 }
 
 function executarMonitoramento(sites) {	
+	zoom.PesquisarOfertasZoom();
 		sites.forEach(site => {
 			if(site.nm_site == "Mercado Livre"){
 				mercadoLivre.ExecutarMonitoramento();

@@ -1,0 +1,11 @@
+C:\Users\FamiliaVepo\Desktop\Workspace\Mercantile\Backend\bin\Release\Backend.dll.config
+C:\Users\FamiliaVepo\Desktop\Workspace\Mercantile\Backend\bin\Release\Backend.dll
+C:\Users\FamiliaVepo\Desktop\Workspace\Mercantile\Backend\bin\Release\Backend.pdb
+C:\Users\FamiliaVepo\Desktop\Workspace\Mercantile\Backend\bin\Release\EntityFramework.dll
+C:\Users\FamiliaVepo\Desktop\Workspace\Mercantile\Backend\bin\Release\EntityFramework.SqlServer.dll
+C:\Users\FamiliaVepo\Desktop\Workspace\Mercantile\Backend\bin\Release\EntityFramework.xml
+C:\Users\FamiliaVepo\Desktop\Workspace\Mercantile\Backend\bin\Release\EntityFramework.SqlServer.xml
+C:\Users\FamiliaVepo\Desktop\Workspace\Mercantile\Backend\obj\Release\Backend.csproj.CoreCompileInputs.cache
+C:\Users\FamiliaVepo\Desktop\Workspace\Mercantile\Backend\obj\Release\Backend.csproj.CopyComplete
+C:\Users\FamiliaVepo\Desktop\Workspace\Mercantile\Backend\obj\Release\Backend.dll
+C:\Users\FamiliaVepo\Desktop\Workspace\Mercantile\Backend\obj\Release\Backend.pdb

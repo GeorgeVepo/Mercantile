@@ -4,7 +4,7 @@ var client = new Client();
 
 module.exports = {
     ObterURLBase : function(){
-           return "http://localhost:62593/api/Mercantile";
+           return "http://localhost:85/api/Mercantile";
     },    
     ObterURLMercadoLivre : function(){
             return "https://lista.mercadolivre.com.br/{0}_OrderId_{1}_ItemTypeID_{2}_PriceRange_{3}_BestSellers_{4}";

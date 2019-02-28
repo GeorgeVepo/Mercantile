@@ -75,7 +75,7 @@ module.exports = {
             }
             
             url = await page.evaluate(element => element.href, listUrl[i]);    
-            oferta.nu_preco = parseFloat(fraction + "," + decimal);
+            oferta.nu_preco = parseFloat(fraction + "," + decimal) * 1000;
             oferta.ds_url = url;
             oferta.id_produto = produto.id_produto;
             listaOfertas[i] = oferta;

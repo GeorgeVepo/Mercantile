@@ -3,6 +3,7 @@
 packages/
 Puppeteer/node_modules/
 *.cache
-*.cache
-*.cache
-*.cache
+Web/bin/
+Web/obj/
+Web/obj/
+Backend/bin/
