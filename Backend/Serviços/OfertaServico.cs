@@ -86,9 +86,7 @@ namespace Backend.Serviços
                     return;
                 }
                 else
-                {
-
-                    //adsgarthgryjht424
+                {                    
                     MailMessage mail = new MailMessage("mercantilevepo@gmail.com", "george.vepog@gmail.com, thati.oliveira14@gmail.com, richardvepogg@gmail.com");
                     SmtpClient client = new SmtpClient();
                     client.UseDefaultCredentials = false;
@@ -101,10 +99,10 @@ namespace Backend.Serviços
                     Oferta oferta = listaOferta.Where(l => l.nu_preco == melhorOferta).FirstOrDefault();
                     mail.Body += "URL: " + oferta.ds_url + Environment.NewLine;
                     mail.Body += "Produto: " + produto.nm_produto + Environment.NewLine;
-                    mail.Body += "Valor: " + string.Format("{0:N}", (oferta.nu_preco * 1000)) + Environment.NewLine;
+                    mail.Body += "Valor: " + string.Format("{0:N}", (oferta.nu_preco)) + Environment.NewLine;
                     mail.Body += "Porcentagem de revenda: " + porcentualDeRevenda + Environment.NewLine;
                     mail.Body += "Porcentagem de lucro: " + porcentualDeLucro  + Environment.NewLine;
-                    mail.Body += "Valor sugerido de revenda: " + string.Format("{0:N}", (valorSugeridoParaRevenda * 1000)) + Environment.NewLine;
+                    mail.Body += "Valor sugerido de revenda: " + string.Format("{0:N}", (valorSugeridoParaRevenda)) + Environment.NewLine;
                     client.Send(mail);
                 }
 
@@ -131,8 +129,8 @@ namespace Backend.Serviços
                 valorMinimoDeGrupo = melhorOferta + auxiliar;
                 notasInclusasNoGrupo = OfertaRepositorio.ObterQuantidadeDeNotasComValorInferior(valorMinimoDeGrupo, idProduto);
                 auxiliar = 0;
-                auxiliar = decimal.Parse((notasInclusasNoGrupo / 100).ToString());
-                auxiliar = (auxiliar * 10) * TotalNotas;
+                auxiliar = decimal.Parse((notasInclusasNoGrupo * 100).ToString());
+                auxiliar = (auxiliar) / TotalNotas;
                 auxiliar = 100 - auxiliar;
                 percentualDeRevendaAux = double.Parse(auxiliar.ToString());
             }

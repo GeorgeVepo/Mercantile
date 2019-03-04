@@ -60,7 +60,7 @@ namespace Backend.Repositorios
             {
                 DateTime periodo = DateTime.Now.AddDays(-40);
                 Oferta oferta = contexto.Oferta.Where(o => o.id_produto == idProduto &&
-                                     o.nu_preco > OfertaAtual &&
+                                     o.nu_preco < OfertaAtual &&
                                      o.dt_oferta > periodo).FirstOrDefault();
                 return oferta == null;
             }

@@ -4,6 +4,7 @@ C:\Users\FamiliaVepo\Desktop\Workspace\Mercantile\ConsoleApp1\bin\Debug\ConsoleA
 C:\Users\FamiliaVepo\Desktop\Workspace\Mercantile\ConsoleApp1\obj\Debug\ConsoleApp1.csproj.CoreCompileInputs.cache
 C:\Users\FamiliaVepo\Desktop\Workspace\Mercantile\ConsoleApp1\obj\Debug\ConsoleApp1.exe
 C:\Users\FamiliaVepo\Desktop\Workspace\Mercantile\ConsoleApp1\obj\Debug\ConsoleApp1.pdb
+<<<<<<< HEAD
 C:\Users\Richard Vepo\Documents\GitHub\Mercantile\ConsoleApp1\bin\Debug\ConsoleApp1.exe.config
 C:\Users\Richard Vepo\Documents\GitHub\Mercantile\ConsoleApp1\bin\Debug\ConsoleApp1.exe
 C:\Users\Richard Vepo\Documents\GitHub\Mercantile\ConsoleApp1\bin\Debug\ConsoleApp1.pdb
@@ -11,3 +12,6 @@ C:\Users\Richard Vepo\Documents\GitHub\Mercantile\ConsoleApp1\obj\Debug\ConsoleA
 C:\Users\Richard Vepo\Documents\GitHub\Mercantile\ConsoleApp1\obj\Debug\ConsoleApp1.csproj.CoreCompileInputs.cache
 C:\Users\Richard Vepo\Documents\GitHub\Mercantile\ConsoleApp1\obj\Debug\ConsoleApp1.exe
 C:\Users\Richard Vepo\Documents\GitHub\Mercantile\ConsoleApp1\obj\Debug\ConsoleApp1.pdb
+=======
+C:\Users\FamiliaVepo\Desktop\Workspace\Mercantile\ConsoleApp1\obj\Debug\ConsoleApp1.csprojAssemblyReference.cache
+>>>>>>> e6f6f4147e343060240c662dd63b1fe5f0b137ba

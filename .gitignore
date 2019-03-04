@@ -3,3 +3,10 @@
 packages/
 Puppeteer/node_modules/
 *.cache
+<<<<<<< HEAD
+=======
+Web/bin/
+Web/obj/
+Web/obj/
+Backend/bin/
+>>>>>>> e6f6f4147e343060240c662dd63b1fe5f0b137ba
