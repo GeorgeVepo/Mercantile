@@ -3,8 +3,10 @@ var client = require("./RestClient/client");
 var fs = require ("fs");
 var service = require ("os-service");
 var mercadoLivre = require('./Mercado Livre/Principal/principal.js');
+var zoom = require('./Zoom/Principal/principal.js');
 
 function usage () {
+	zoom.PesquisarOfertasZoom();
 	var urlBase = client.ObterURLBase();
 	client.ObterSites(urlBase, executarMonitoramento);	
 }

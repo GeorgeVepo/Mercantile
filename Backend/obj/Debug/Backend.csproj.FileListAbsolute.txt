@@ -22,3 +22,15 @@ C:\Users\FamiliaVepo\Desktop\Workspace\Mercantile\Backend\obj\Debug\Backend.cspr
 C:\Users\FamiliaVepo\Desktop\Workspace\Mercantile\Backend\obj\Debug\Backend.dll
 C:\Users\FamiliaVepo\Desktop\Workspace\Mercantile\Backend\obj\Debug\Backend.pdb
 C:\Users\FamiliaVepo\Desktop\Workspace\Mercantile\Backend\obj\Debug\Backend.csprojAssemblyReference.cache
+C:\Users\Richard Vepo\Documents\GitHub\Mercantile\Backend\bin\Debug\Backend.dll.config
+C:\Users\Richard Vepo\Documents\GitHub\Mercantile\Backend\bin\Debug\Backend.dll
+C:\Users\Richard Vepo\Documents\GitHub\Mercantile\Backend\bin\Debug\Backend.pdb
+C:\Users\Richard Vepo\Documents\GitHub\Mercantile\Backend\bin\Debug\EntityFramework.dll
+C:\Users\Richard Vepo\Documents\GitHub\Mercantile\Backend\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\Richard Vepo\Documents\GitHub\Mercantile\Backend\bin\Debug\EntityFramework.xml
+C:\Users\Richard Vepo\Documents\GitHub\Mercantile\Backend\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\Richard Vepo\Documents\GitHub\Mercantile\Backend\obj\Debug\Backend.csprojAssemblyReference.cache
+C:\Users\Richard Vepo\Documents\GitHub\Mercantile\Backend\obj\Debug\Backend.csproj.CoreCompileInputs.cache
+C:\Users\Richard Vepo\Documents\GitHub\Mercantile\Backend\obj\Debug\Backend.csproj.CopyComplete
+C:\Users\Richard Vepo\Documents\GitHub\Mercantile\Backend\obj\Debug\Backend.dll
+C:\Users\Richard Vepo\Documents\GitHub\Mercantile\Backend\obj\Debug\Backend.pdb
