@@ -9,23 +9,23 @@ module.exports = {
        
         await page.goto('https://www.zoom.com.br/celular/smartphone-samsung-galaxy-s9-plus-sm-g9650-128gb?resultorder=2#price');          
         await page.waitForSelector('#product-list-container > ul > li');
-        var listPrices = await page.$$('#product-list-container > ul > li');                                                                                                       
-        var listUrl = await page.$$('#product-list-container > ul > li');                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    
+        
+        var listaElementos = await page.$$('.price > a');  
         var url = "";
-        var listOffers = [];    
-        var element = null;
+        var listaOfertas = [];    
+        var price = null;
+        var oferta = {};
 
-        for(var i = 0; i < listPrices.length; i++){     
+        for(var i = 0; i < listaElementos.length; i++){  
+            oferta = {};   
             url = ""; 
-            element = null;      
-            element = await listPrices[i].$('#product-list-container > ul > li');
-            if(element != null){                                                                                                 
-                decimal = await listPrices[i].$eval('#product-list-container > ul > li', el => el.textContent);            
-            } else{
-                decimal = "0";
-            }     
-            url = await page.evaluate(element => element.href, listUrl[i]);                   
-            listOffers[i] =  decimal + "###" + url;
+            price = await page.evaluate(el => el.textContent, listaElementos[i]);             
+            url = await page.evaluate(element => element.href, listaElementos[i]);    
+            url = "www.zoom.com.br" + url;  
+            oferta.nu_preco = parseFloat(price.replace("R$", "").replace(/\s/g, "").replace(".", "")) * 1000;
+            oferta.ds_url = url;
+            oferta.id_produto = 1;
+            listaOfertas[i] =  oferta;
         } 
                                      
     }                             
