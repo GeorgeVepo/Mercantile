@@ -37,11 +37,6 @@ namespace Backend.Serviços
             return ProdutoRespositorio.ObterTodos(expressao);
         }
 
-        public List<Produto> ObterTodosComFiltros()
-        {
-            return ProdutoRespositorio.ObterTodosComFiltro();
-        }
-
         public Produto SalvarTodos(Produto entity)
         {
             return ProdutoRespositorio.SalvarTodos(entity);

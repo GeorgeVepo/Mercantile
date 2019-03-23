@@ -51,15 +51,19 @@ namespace Backend.Serviços
             OfertaRepositorio.Dispose();
         }
 
-        public void InserirOfertas(List<Oferta> listaOferta)
+        public List<Oferta> InserirOfertas(List<Oferta> listaOferta)
         {
             List<Oferta> ListaAux = new List<Oferta>();
             foreach (Oferta oferta in listaOferta)
             {
+                if (oferta == null)
+                    continue;
+
                 oferta.dt_oferta = DateTime.Now;
                 ListaAux.Add(oferta);
             }
           OfertaRepositorio.SalvarTodos(ListaAux);
+          return ListaAux;
         }
 
         public void AnalisarOfertas(List<Oferta> listaOferta)

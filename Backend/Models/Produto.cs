@@ -12,8 +12,8 @@ namespace Backend.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Produto()
         {
-            Ofertas = new HashSet<Oferta>();
-            Filtros = new HashSet<Filtro>();
+            Oferta = new HashSet<Oferta>();
+            Site_Produto_Filtro = new HashSet<Site_Produto_Filtro>();
         }
 
         [Key]
@@ -21,14 +21,18 @@ namespace Backend.Models
 
         [Required]
         [StringLength(500)]
-        public string nm_produto { get; set; }        
-        
-        public decimal nu_porcentagemMinimaDeLucro { get; set; }
+        public string nm_produto { get; set; }
+
+        [Column(TypeName = "numeric")]
+        public decimal? nu_porcentagemMinimaDeLucro { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Oferta> Ofertas { get; set; }
+        public virtual ICollection<Oferta> Oferta { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Filtro> Filtros { get; set; }
+        public virtual ICollection<Site_Produto_Filtro> Site_Produto_Filtro { get; set; }
+
+        [NotMapped]
+        public List<Filtro> ListaFiltros;
     }
 }

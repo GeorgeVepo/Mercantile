@@ -11,10 +11,12 @@ function usage () {
 }
 
 function executarMonitoramento(sites) {	
-	zoom.PesquisarOfertasZoom();
 		sites.forEach(site => {
 			if(site.nm_site == "Mercado Livre"){
-				mercadoLivre.ExecutarMonitoramento();
+				mercadoLivre.ExecutarMonitoramento(site);
+			}
+			if(site.nm_site == "ZOOM"){
+				zoom.ExecutarMonitoramento(site);
 			}
 		});	
   }

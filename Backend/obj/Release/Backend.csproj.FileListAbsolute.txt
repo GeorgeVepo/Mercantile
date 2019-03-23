@@ -9,3 +9,4 @@ C:\Users\FamiliaVepo\Desktop\Workspace\Mercantile\Backend\obj\Release\Backend.cs
 C:\Users\FamiliaVepo\Desktop\Workspace\Mercantile\Backend\obj\Release\Backend.csproj.CopyComplete
 C:\Users\FamiliaVepo\Desktop\Workspace\Mercantile\Backend\obj\Release\Backend.dll
 C:\Users\FamiliaVepo\Desktop\Workspace\Mercantile\Backend\obj\Release\Backend.pdb
+C:\Users\FamiliaVepo\Desktop\Workspace\Mercantile\Backend\obj\Release\Backend.csprojAssemblyReference.cache

@@ -45,15 +45,7 @@ namespace Backend.IRepositorio
                 return contexto.Produto.ToList();
             }
         }
-
-        public List<Produto> ObterTodosComFiltro()
-        {
-            using (Contexto contexto = new Contexto())
-            {
-                return contexto.Set<Produto>().Include(p => p.Filtros).ToList();
-            }
-        }
-
+        
         public List<Produto> ObterTodos(Func<Produto, bool> expressao)
         {
             using (Contexto contexto = new Contexto())

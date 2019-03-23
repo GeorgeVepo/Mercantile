@@ -13,3 +13,5 @@ Backend/bin/
 Puppeteer/package-lock.json
 
 Puppeteer/package-lock.json
+Web/Web.csproj.user
+Web/Properties/PublishProfiles/FolderProfile.pubxml.user

@@ -56,15 +56,18 @@
     <Compile Include="Models\Oferta.cs" />
     <Compile Include="Models\Produto.cs" />
     <Compile Include="Models\Site.cs" />
+    <Compile Include="Models\Site_Produto_Filtro.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositorios\FiltroRepositorio.cs" />
     <Compile Include="Repositorios\Base\IRepositorio.cs" />
     <Compile Include="Repositorios\OfertaRepositorio.cs" />
+    <Compile Include="Repositorios\SiteProdutoFiltroRepositorio .cs" />
     <Compile Include="Repositorios\ProdutoRepositorio.cs" />
     <Compile Include="Repositorios\SiteRepositorio.cs" />
     <Compile Include="Serviços\FiltroServico.cs" />
     <Compile Include="Serviços\IServico.cs" />
     <Compile Include="Serviços\OfertaServico.cs" />
+    <Compile Include="Serviços\SiteProdutoFiltroServico.cs" />
     <Compile Include="Serviços\ProdutoServico.cs" />
     <Compile Include="Serviços\SiteServico.cs" />
   </ItemGroup>

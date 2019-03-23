@@ -1,4 +1,4 @@
-var util = require('./../Util/util.js');
+var util = require('./../../Util/util.js');
 var puppeteer = require('puppeteer');
  
 String.prototype.format = util.format;
@@ -8,7 +8,7 @@ module.exports = {
         const browser = await puppeteer.launch({ headless: true });
         const page = await browser.newPage();
         await page.setViewport({width: 1050, height: 1040});
-        var Filtros = produto.Filtros;
+        var Filtros = produto.ListaFiltros;
         var nomeProduto = Filtros.filter(filtro => filtro.nm_filtro == "nomeProduto")[0];
         var ordenacao = Filtros.filter(filtro => filtro.nm_filtro == "ordenacao")[0];
         var itemTypeID = Filtros.filter(filtro => filtro.nm_filtro == "ItemTypeID")[0];
@@ -24,7 +24,7 @@ module.exports = {
             priceRange.ds_valor, 
             melhoresVendedores.ds_valor);
 
-        await page.goto(urlPesquisa);   
+        await page.goto(urlPesquisa, {timeout: 100000});   
 
         await page.waitForSelector('.item__price')
         var listTitle = await page.$$('.main-title');  
@@ -59,7 +59,7 @@ module.exports = {
             
             var tituloInvalido = false;
             tituloNaoPermitido.forEach(filtro => {
-                tituloInvalido = title.includes(filtro.ds_valor);
+                tituloInvalido = title.toUpperCase().includes(filtro.ds_valor.toUpperCase());
             });
             
             if(tituloInvalido){
@@ -67,7 +67,7 @@ module.exports = {
             }
             
             tituloObrigatorio.forEach(filtro => {
-                tituloInvalido = title.includes(filtro.ds_valor);
+                tituloInvalido = title.toUpperCase().includes(filtro.ds_valor.toUpperCase());
             });
             
             if(!tituloInvalido){
@@ -75,13 +75,14 @@ module.exports = {
             }
             
             url = await page.evaluate(element => element.href, listUrl[i]);    
-            oferta.nu_preco = parseFloat(fraction + "," + decimal) * 1000;
+            oferta.nu_preco = parseFloat(fraction.replace(".", "") + "." + decimal).toFixed(2);
             oferta.ds_url = url;
             oferta.id_produto = produto.id_produto;
             listaOfertas[i] = oferta;
         }
 
-        page.close();
+        pages = await browser.pages();
+        pages.forEach(p => p.close());
         return listaOfertas;         
     }
 }

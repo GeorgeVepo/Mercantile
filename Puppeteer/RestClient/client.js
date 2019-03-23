@@ -5,13 +5,10 @@ var client = new Client();
 module.exports = {
     ObterURLBase : function(){
            return "http://localhost:85/api/Mercantile";
-    },    
-    ObterURLMercadoLivre : function(){
-            return "https://lista.mercadolivre.com.br/{0}_OrderId_{1}_ItemTypeID_{2}_PriceRange_{3}_BestSellers_{4}";
-    },   
-    ObterProdutos  : async function(URLBase, callback) {
+    },  
+    ObterProdutos  : async function(id_site, URLBase, callback) {
         // direct way
-        client.get(URLBase + "/ObterProdutosParaPesquisa", function (produtos, response) {
+        client.get(URLBase + "/ObterProdutosParaPesquisa?id_site=" + id_site, function (produtos, response) {
             callback(produtos);
         });    
     

@@ -181,9 +181,6 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\FiltroReq.cs" />
-    <Compile Include="Models\OfertaReq.cs" />
-    <Compile Include="Models\ProdutoReq.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
