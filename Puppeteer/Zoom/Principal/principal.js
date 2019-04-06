@@ -20,7 +20,9 @@ function PesquisarOfertas(produtos) {
     });
 
     promises.forEach(promise => promise.then(function(ofertas) {
-        client.EnviarOfertas(urlBase, ofertas);
+        if(ofertas != null && ofertas.length > 0){
+            client.EnviarOfertas(urlBase, ofertas);
+        }        
     }));
 
 }

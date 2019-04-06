@@ -52,18 +52,9 @@ namespace Backend.Serviços
         }
 
         public List<Oferta> InserirOfertas(List<Oferta> listaOferta)
-        {
-            List<Oferta> ListaAux = new List<Oferta>();
-            foreach (Oferta oferta in listaOferta)
-            {
-                if (oferta == null)
-                    continue;
-
-                oferta.dt_oferta = DateTime.Now;
-                ListaAux.Add(oferta);
-            }
-          OfertaRepositorio.SalvarTodos(ListaAux);
-          return ListaAux;
+        {           
+          OfertaRepositorio.SalvarTodos(listaOferta);
+          return listaOferta;
         }
 
         public void AnalisarOfertas(List<Oferta> listaOferta)
@@ -74,7 +65,7 @@ namespace Backend.Serviços
             int totalOfertas = OfertaRepositorio.ObterQuantidadeDeNotasDoPeriodo(idProduto);
             Produto produto = produtoRepositorio.Obter(idProduto);
 
-            if (EMelhor)
+            if (EMelhor && totalOfertas > 400)
             {
                 double porcentualDeLucro = double.Parse(produto.nu_porcentagemMinimaDeLucro.ToString());
                 double aux = porcentualDeLucro;

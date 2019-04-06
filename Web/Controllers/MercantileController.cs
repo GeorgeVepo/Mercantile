@@ -23,9 +23,19 @@ namespace Web.Controllers
         [ActionName("EnviarOfertas")]
         public IHttpActionResult PostInserirOfertasPesquisadas(List<Oferta> listaOfertas)
         {
-            List<Oferta> listaOfertasSalvas = OfertaServico.InserirOfertas(listaOfertas);           
-            
-            OfertaServico.AnalisarOfertas(listaOfertasSalvas);                    
+            List<Oferta> ListaAux = new List<Oferta>();
+            foreach (Oferta oferta in listaOfertas)
+            {
+                if (oferta == null)
+                    continue;
+
+                oferta.dt_oferta = DateTime.Now;
+                ListaAux.Add(oferta);
+            }
+
+            OfertaServico.AnalisarOfertas(ListaAux);
+
+            List<Oferta> listaOfertasSalvas = OfertaServico.InserirOfertas(ListaAux); 
 
             return StatusCode(HttpStatusCode.OK);
         }
