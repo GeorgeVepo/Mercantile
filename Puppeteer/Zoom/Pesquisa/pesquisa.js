@@ -7,22 +7,23 @@ module.exports = {
     PesquisarOfertas: async function (produto, urlSite) {
         var listaOfertas = [];
         const browser = await puppeteer.launch({
-            headless: false
+            headless: true
         });
 
         try {
+            await util.sleep(Math.floor(Math.random() * 300000));
             listaOfertas = await this.ExecutarPesquisa(produto, urlSite, browser);
+            
         } catch (e) {
             var pages = await browser.pages();
             pages.forEach(p => p.close());
-            listaOfertas = [];
         }
         return listaOfertas;
     },
     ExecutarPesquisa: async function (produto, urlSite, browser) {
         const page = await browser.newPage();
         await page.setViewport({
-            width: 1050,
+            width: 1350,
             height: 1040
         });
 
@@ -36,11 +37,11 @@ module.exports = {
             nomeProduto.ds_valor,
             ordem.ds_valor
         );
-
+        await util.sleep(Math.floor(Math.random() * 60000));
         await page.goto(urlPesquisa, {
             timeout: 100000
         });
-        await page.waitForSelector('#product-list-container > ul > li');
+        await this.EsperarRecarregarPagina(page, "#product-list-container > ul > li");
 
         var botaoMaisItens = await page.$('.load-more-container > button');
         var l = 0;
@@ -52,7 +53,7 @@ module.exports = {
             } catch (e) {
                 await page.reload();
             }
-
+            await new Promise(resolve => setTimeout(resolve, 10000));
             botaoMaisItens = await page.$('.load-more-container > button');
             if (i > 50) {
                 l++;
@@ -71,12 +72,14 @@ module.exports = {
         var botaoBotaoCEP = await page.$('.shipping-calc > a');
 
         if (botaoBotaoCEP != null) {
+            await util.sleep(Math.floor(Math.random() * 60000));
             await botaoBotaoCEP.click();
             await page.waitForSelector('.zip-region');
             await page.evaluate(() => document
                 .querySelector('.zip-region > input').value = '88110630');
 
             var botaosubmit = await page.$('.zip-modal > button');
+            await util.sleep(Math.floor(Math.random() * 60000));
             await botaosubmit.click();
         }
 
@@ -144,33 +147,48 @@ module.exports = {
                         siteValido = true;
                         break;
                     case "Kabum":
-                        frete = await this.ObterFreteKabum(url, browser);
-                        if (frete == 0) {
+                        try {
+                            frete = await this.ObterFreteKabum(url, browser);
+                        } catch (e) {
+                            break;
+                        }
+                        if (frete == false) {
                             break;
                         }
                         siteValido = true;
                         break;
                     case "Submarino":
-                        frete = await this.ObterFreteSubmarino(url, browser);
-                        if (frete == 0) {
+                        try {
+                            frete = await this.ObterFreteSubmarino(url, browser);
+                        } catch (e) {
                             break;
                         }
                         siteValido = true;
                         break;
                     case "Shoptime":
-                        //Não implementado 
+                        try {
+                            frete = await this.ObterFreteShoptime(url, browser);
+                        } catch (e) {
+                            break;
+                        }
+                        siteValido = true;
                         break;
                     case "Amazon":
-                        frete = await this.ObterFreteAmazon(url, browser);
-                        if (frete == 0) {
+                        try {
+                            frete = await this.ObterFreteAmazon(url, browser);
+                        } catch (e) {
                             break;
                         }
                         siteValido = true;
                         break;
                     case "Walmart":
-                        //Não implementado 
+                        try {
+                            frete = await this.ObterFreteWalmart(url, browser);
+                        } catch (e) {
+                            break;
+                        }
+                        siteValido = true;
                         break;
-
                 }
 
                 if (!siteValido) {
@@ -193,19 +211,23 @@ module.exports = {
     },
     ObterFreteKabum: async function (urlSite, browser) {
         var pageOferta = await browser.newPage();
+        await util.sleep(Math.floor(Math.random() * 60000));
         await pageOferta.goto(urlSite, {
             timeout: 100000
         });
+
         try {
             await pageOferta.waitForSelector('.button-calcula-cep', {
                 timeout: 100000
             });
         } catch (e) {
-            return 0;
+            return false;
         }
         await pageOferta.evaluate(() => document.querySelector('#calc_cep').value = '88110-630');
         element = await pageOferta.$('.button-calcula-cep');
+        await util.sleep(Math.floor(Math.random() * 60000));
         await element.click();
+        await new Promise(resolve => setTimeout(resolve, 10000));
         await pageOferta.waitForSelector('#table-calcular > tr')
         await new Promise(resolve => setTimeout(resolve, 10000));
         var elementList = await pageOferta.$$('#table-calcular > tr');
@@ -216,7 +238,8 @@ module.exports = {
             celulasList = await elementList[i].$$('td');
             var num = celulasList.length - 1;
             aux = await pageOferta.evaluate(el => el.textContent, celulasList[num]);
-            aux = parseFloat(aux.replace("R$", "").replace(/\s/g, "").replace(",", ".")).toFixed(2);
+            aux = aux.replace("R$", "").replace(/\s/g, "").replace(",", ".");
+            aux = parseFloat(aux).toFixed(2);
             if (aux != "" && aux != "NaN" && (aux < frete || frete == 0)) {
                 frete = aux;
             }
@@ -226,19 +249,16 @@ module.exports = {
     },
     ObterFreteSubmarino: async function (urlSite, browser) {
         var pageOferta = await browser.newPage();
+        await util.sleep(Math.floor(Math.random() * 60000));
         await pageOferta.goto(urlSite, {
             timeout: 100000
         });
-        try {
-            await pageOferta.waitForSelector('#input-freight-product', {
-                timeout: 100000
-            });
-        } catch (e) {
-            return 0;
-        }
+
+        await this.EsperarRecarregarPagina(pageOferta, "#input-freight-product");
         await pageOferta.focus('#input-freight-product');
         await pageOferta.keyboard.type("88110630");
         element = await pageOferta.$('#bt-freight-product');
+        await util.sleep(Math.floor(Math.random() * 60000));
         await element.click();
         await new Promise(resolve => setTimeout(resolve, 10000));
         var elementList = await pageOferta.$('#card-freight');
@@ -247,35 +267,75 @@ module.exports = {
         var aux = "";
         for (var i = 0; i < elementList.length; i++) {
             aux = await pageOferta.evaluate(el => el.textContent, elementList[i]);
+            if (aux == "") {
+                i += 2;
+                continue;
+            }
+            if (aux == "grátis") {
+                frete = 0;
+                return frete;
+            }
+
             aux = aux.replace("R$", "").replace(/\s/g, "").replace(",", ".");
             if (/\D/.test(aux.replace(".", "")) || aux == "") {
                 continue;
             }
             aux = parseFloat(aux).toFixed(2);
 
-            if(frete > aux){
-                frete = aux;            
-            }                     
+            if (frete > aux || frete == 0) {
+                frete = aux;
+            }
         }
         return frete;
     },
     ObterFreteAmazon: async function (urlSite, browser) {
         var pageOferta = await browser.newPage();
+        await util.sleep(Math.floor(Math.random() * 60000));
         await pageOferta.goto(urlSite, {
             timeout: 100000
         });
-        try {
-            await pageOferta.waitForSelector('#contextualIngressPtLabel', {
-                timeout: 100000
-            });
-        } catch (e) {
-            return 0;
+        await this.EsperarRecarregarPagina(pageOferta, "#contextualIngressPtLabel");
+        await this.ApertarBotaoEsperar(pageOferta, "#contextualIngressPtLabel", "#GLUXZipUpdateInput_0");
+        await pageOferta.evaluate(() => document.querySelector('#GLUXZipUpdateInput_0').value = '88110');
+        await pageOferta.evaluate(() => document.querySelector('#GLUXZipUpdateInput_1').value = '630');
+        element = await pageOferta.$('#GLUXZipInputSection');
+        await this.ApertarBotaoEsperar(pageOferta, "input[type=submit]", ".a-popover-footer", element);
+        await this.ApertarBotaoEsperar(pageOferta, ".a-popover-footer > span > span", "#shippingMessageInsideBuyBox_feature_div");
+        await pageOferta.waitForSelector('#contextualIngressPtLabel');
+        element = await pageOferta.$('#shippingMessageInsideBuyBox_feature_div');
+        element = await element.$('a');
+        var frete = 0;
+        var aux = "";
+        if (element == null) {
+            await pageOferta.waitForSelector('#soldByThirdParty');
+            var elementList = await pageOferta.$$('#soldByThirdParty > span');
+            for (var i = 0; i < elementList.length; i++) {
+                aux = await pageOferta.evaluate(el => el.textContent, elementList[i]);
+                if (aux.includes("frete")) {
+                    aux = aux.replace("+", "").replace("de frete", "").replace("R$", "").replace(/\s/g, "").replace(",", ".");
+                    aux = parseFloat(aux).toFixed(2);
+                    frete = aux;
+                    return frete;
+                }
+            };
         }
-        element = await pageOferta.$('#contextualIngressPtLabel');
-        await element.click();
+        aux = await pageOferta.evaluate(el => el.textContent, element);
+        if (aux == "Frete GRÁTIS") {
+            return frete;
+        }
+    },
+    ObterFreteShoptime: async function (urlSite, browser) {
+        var pageOferta = await browser.newPage();
+        await util.sleep(Math.floor(Math.random() * 60000));
+        await pageOferta.goto(urlSite, {
+            timeout: 100000
+        });
+
+        await this.EsperarRecarregarPagina(pageOferta, "#input-freight-product");
         await pageOferta.focus('#input-freight-product');
         await pageOferta.keyboard.type("88110630");
-        element = await pageOferta.$('#contextualIngressPtLabel');
+        element = await pageOferta.$('#bt-freight-product');
+        await util.sleep(Math.floor(Math.random() * 60000));
         await element.click();
         await new Promise(resolve => setTimeout(resolve, 10000));
         var elementList = await pageOferta.$('#card-freight');
@@ -284,16 +344,85 @@ module.exports = {
         var aux = "";
         for (var i = 0; i < elementList.length; i++) {
             aux = await pageOferta.evaluate(el => el.textContent, elementList[i]);
+            if (aux == "") {
+                i += 2;
+                continue;
+            }
+            if (aux == "grátis") {
+                frete = 0;
+                return frete;
+            }
             aux = aux.replace("R$", "").replace(/\s/g, "").replace(",", ".");
             if (/\D/.test(aux.replace(".", "")) || aux == "") {
                 continue;
             }
             aux = parseFloat(aux).toFixed(2);
-            if(frete > aux){
-                frete = aux;            
-            }    
+
+            if (frete == 0 || frete > aux) {
+                frete = aux;
+            }
+        }
+        return frete;
+    },
+    ObterFreteWalmart: async function (urlSite, browser) {
+        var pageOferta = await browser.newPage();
+        await util.sleep(Math.floor(Math.random() * 60000));
+        await pageOferta.goto(urlSite, {
+            timeout: 100000
+        });
+        await this.EsperarRecarregarPagina(pageOferta, "#estimate-shipping-txt-cep");
+
+        //Focar no cep
+        await pageOferta.focus('#estimate-shipping-txt-cep');
+        await pageOferta.keyboard.type("88110630");
+        element = await pageOferta.$('.estimate-shipping-frm');
+        await this.ApertarBotaoEsperar(pageOferta, 'input[type=submit]', '.buybox-consult-item-shipping > span > span', element);
+        //frete grátis      
+
+        var frete = 0;
+        var aux = "";
+        element = await pageOferta.$('.buybox-consult-item-shipping > span > span');
+        aux = await pageOferta.evaluate(el => el.textContent, element);
+
+        if (aux == 'Frete Grátis') {
+            frete = 0;
+            return frete;
+        }
+
+        aux = aux.replace("R$", "").replace(/\s/g, "").replace(",", ".");
+        aux = parseFloat(aux).toFixed(2);
+
+        if (aux != 'NaN') {
+            frete = aux;
         }
 
         return frete;
+    },
+    ApertarBotaoEsperar: async function (page, selectorBotao, selectorEspera, pageElement) {
+        var element = null;
+        await page.waitForSelector(selectorBotao);
+        if (pageElement == null) {
+            element = await page.$(selectorBotao);
+        } else {
+            element = await pageElement.$(selectorBotao);
+        }
+        await util.sleep(Math.floor(Math.random() * 60000));
+        await element.click();
+        try {
+            await page.waitForSelector(selectorEspera);
+        } catch (e) {
+            await this.ApertarBotaoEsperar(page, selectorBotao, selectorEspera, pageElement);
+        }
+    },
+    EsperarRecarregarPagina: async function (page, selectorEspera) {
+        try {
+            await page.waitForSelector(selectorEspera, {
+                timeout: 100000
+            });
+        } catch (e) {
+            await page.reload();
+            await this.EsperarRecarregarPagina(page, selectorEspera);
+        }
     }
+
 }

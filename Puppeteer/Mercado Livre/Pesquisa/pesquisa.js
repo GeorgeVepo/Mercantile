@@ -11,6 +11,7 @@ module.exports = {
         });
         
         try {
+            await util.sleep(Math.floor(Math.random() * 300000));
             listaOfertas = await this.ExecutarPesquisa(produto, urlSite, browser);
         } catch(e){
             var pages = await browser.pages();
@@ -41,6 +42,7 @@ module.exports = {
             priceRange.ds_valor,
             melhoresVendedores.ds_valor);
 
+        await util.sleep(Math.floor(Math.random() * 60000));
         await page.goto(urlPesquisa, {
             timeout: 100000
         });
@@ -104,6 +106,7 @@ module.exports = {
             element = await listFretes[i].$('.shipping');
             if (element == null) {
                 const pageOferta = await browser.newPage();
+                await util.sleep(Math.floor(Math.random() * 60000));
                 await pageOferta.goto("https://www.mercadolivre.com.br/navigation/addresses-hub?mode=embed&flow=true&go=" + url, {
                     timeout: 100000
                 });
@@ -111,6 +114,7 @@ module.exports = {
                 await pageOferta.focus('.andes-form-control__field');
                 await pageOferta.evaluate(() => document.querySelector('.andes-form-control__field').value = '88110630');
                 element = await pageOferta.$('button');
+                await util.sleep(Math.floor(Math.random() * 60000));
                 await element.click();
                 await pageOferta.waitForSelector('.short-description__form')
                 element = await pageOferta.$('.payment-info');

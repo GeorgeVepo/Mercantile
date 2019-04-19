@@ -72,9 +72,9 @@ namespace Backend.Serviços
                 decimal valorSugeridoParaRevenda = 0;
                 double porcentualDeRevenda = 0;
 
-                ObterPercentualDeDiferencaOtimisado(melhorOferta, idProduto, totalOfertas, 0.1, ref porcentualDeLucro, ref valorSugeridoParaRevenda, ref porcentualDeRevenda);
-                ObterPercentualDeDiferencaOtimisado(melhorOferta, idProduto, totalOfertas, 0.01, ref porcentualDeLucro, ref valorSugeridoParaRevenda, ref porcentualDeRevenda);
-                ObterPercentualDeDiferencaOtimisado(melhorOferta, idProduto, totalOfertas, 0.001, ref porcentualDeLucro, ref valorSugeridoParaRevenda, ref porcentualDeRevenda);
+                ObterPercentualDeDiferencaOtimizado(melhorOferta, idProduto, totalOfertas, 0.1, ref porcentualDeLucro, ref valorSugeridoParaRevenda, ref porcentualDeRevenda);
+                ObterPercentualDeDiferencaOtimizado(melhorOferta, idProduto, totalOfertas, 0.01, ref porcentualDeLucro, ref valorSugeridoParaRevenda, ref porcentualDeRevenda);
+                ObterPercentualDeDiferencaOtimizado(melhorOferta, idProduto, totalOfertas, 0.001, ref porcentualDeLucro, ref valorSugeridoParaRevenda, ref porcentualDeRevenda);
 
                 if (porcentualDeLucro <= aux)
                 {                    
@@ -104,7 +104,7 @@ namespace Backend.Serviços
             }
         }
 
-        public double ObterPercentualDeDiferencaOtimisado(decimal melhorOferta, int idProduto, int TotalNotas, double percentualDeDescida,  ref double percentualDiferenca, ref decimal valorSugeridoParaRevenda, ref double percentualDeRevenda)
+        public double ObterPercentualDeDiferencaOtimizado(decimal melhorOferta, int idProduto, int TotalNotas, double percentualDeDescida,  ref double percentualDiferenca, ref decimal valorSugeridoParaRevenda, ref double percentualDeRevenda)
         {
             double notasInclusasNoGrupo = 0;
             decimal auxiliar = 0;
