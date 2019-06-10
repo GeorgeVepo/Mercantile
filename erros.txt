@@ -1,0 +1,22 @@
+Mercado Livre 
+Sansung galaxy S9 plus 128 gb
+Evaluation failed: TypeError: Cannot read property 'href' of undefined
+    at element (__puppeteer_evaluation_script__:1:21)Mercado Livre 
+Sansung galaxy S9 plus 128 gb
+Evaluation failed: TypeError: Cannot read property 'href' of undefined
+    at element (__puppeteer_evaluation_script__:1:21)Mercado Livre 
+Sansung galaxy S9 plus 128 gb
+Evaluation failed: TypeError: Cannot read property 'href' of undefined
+    at element (__puppeteer_evaluation_script__:1:21)Mercado Livre 
+Sansung galaxy S9 plus 128 gb
+Evaluation failed: TypeError: Cannot read property 'href' of undefined
+    at element (__puppeteer_evaluation_script__:1:21)Mercado Livre 
+Sansung galaxy S9 plus 128 gb
+Evaluation failed: TypeError: Cannot read property 'href' of undefined
+    at element (__puppeteer_evaluation_script__:1:21)Mercado Livre 
+Sansung galaxy S9 plus 128 gb
+Evaluation failed: TypeError: Cannot read property 'href' of undefined
+    at element (__puppeteer_evaluation_script__:1:21)Mercado Livre 
+Sansung galaxy S9 plus 128 gb
+Evaluation failed: TypeError: Cannot read property 'href' of undefined
+    at element (__puppeteer_evaluation_script__:1:21)

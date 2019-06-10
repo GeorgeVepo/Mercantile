@@ -66,6 +66,17 @@ namespace Backend.Repositorios
             }
         }
 
+        public List<Oferta> ObterOfertasDoDia(int idProduto)
+        {
+            using (Contexto contexto = new Contexto())
+            {
+                DateTime hoje = DateTime.Now.Date;
+                List<Oferta> ofertasLista = contexto.Oferta.Where(o => o.id_produto == idProduto &&                                     
+                                     o.dt_oferta > hoje && o.nu_preco > 0).ToList();
+                return ofertasLista;
+            }
+        }
+
         public int ObterQuantidadeDeNotasDoPeriodo(int idProduto)
         {
             DateTime periodo = DateTime.Now.AddDays(-40);

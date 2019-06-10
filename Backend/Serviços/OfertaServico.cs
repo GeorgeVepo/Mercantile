@@ -57,8 +57,13 @@ namespace Backend.Serviços
           return listaOferta;
         }
 
-        public void AnalisarOfertas(List<Oferta> listaOferta)
-        {
+        public void AnalisarOfertas(int id)
+        {            
+            List<Oferta> listaOferta = OfertaRepositorio.ObterOfertasDoDia(id);
+            if(listaOferta.Count == 0)
+            {
+                return;
+            }
             decimal melhorOferta = listaOferta.Min(o => o.nu_preco);
             int idProduto = listaOferta[0].id_produto.Value;
             Boolean EMelhor = OfertaRepositorio.CompararComDemaisOfertas(melhorOferta, idProduto);

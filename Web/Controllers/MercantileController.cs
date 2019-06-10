@@ -20,20 +20,30 @@ namespace Web.Controllers
 
         // POST: api/Mercantile/EnviarOfertasPesquisadas
         [ResponseType(typeof(HttpStatusCode))]
+        [ActionName("AnalisarOfertas")]
+        public IHttpActionResult PostAnalisarOfertas()
+        {
+            List<int> listaIdsProduto = this.ProdutoServico.ObterTodos().Select(a => a.id_produto).ToList();
+            listaIdsProduto.ForEach(id => OfertaServico.AnalisarOfertas(id));
+            
+
+            return StatusCode(HttpStatusCode.OK);
+        }
+
+        // POST: api/Mercantile/EnviarOfertasPesquisadas
+        [ResponseType(typeof(HttpStatusCode))]
         [ActionName("EnviarOfertas")]
         public IHttpActionResult PostInserirOfertasPesquisadas(List<Oferta> listaOfertas)
         {
             List<Oferta> ListaAux = new List<Oferta>();
             foreach (Oferta oferta in listaOfertas)
             {
-                if (oferta == null)
+                if (oferta == null || oferta.nu_preco == 0)
                     continue;
 
                 oferta.dt_oferta = DateTime.Now;
                 ListaAux.Add(oferta);
             }
-
-            OfertaServico.AnalisarOfertas(ListaAux);
 
             List<Oferta> listaOfertasSalvas = OfertaServico.InserirOfertas(ListaAux); 
 

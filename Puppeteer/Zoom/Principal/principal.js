@@ -6,23 +6,29 @@ var urlSite = null;
 
 //module exports para oder usar em outras partes
 module.exports = {
-    ExecutarMonitoramento  : async function(site) {
+    ExecutarMonitoramento: async function (site, frete) {
         urlSite = site.ds_url;
         urlBase = client.ObterURLBase();
-        client.ObterProdutos(site.id_site, urlBase, PesquisarOfertas);
+        client.ObterProdutos(site.id_site, urlBase, frete, PesquisarOfertas);
     }
 }
 
-function PesquisarOfertas(produtos) {	
-    var promises = [];
-    produtos.forEach(produto => {
-        promises.push(Pesquisar.PesquisarOfertas(produto, urlSite));
-    });
+async function PesquisarOfertas(produtos, frete) {
+     var browser = await puppeteer.launch({
+        headless: false//,
+        //args: [ '--proxy-server=127.0.0.1:24000' ]
+    });  
 
-    promises.forEach(promise => promise.then(function(ofertas) {
-        if(ofertas != null && ofertas.length > 0){
-            client.EnviarOfertas(urlBase, ofertas);
-        }        
-    }));
+    for (var i = 0; i < produtos.length; i++) {
+        ofertas = await Pesquisar.PesquisarOfertas(produtos[i], urlSite, browser, frete);
+        if(ofertas == "pesquisa indisponivel"){
+            break;
+        }
 
+        if (ofertas != null && ofertas.length > 0) {
+            await client.EnviarOfertas(urlBase, ofertas);
+        }
+    }
+    
+    browser.close();
 }

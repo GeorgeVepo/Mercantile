@@ -3,10 +3,13 @@ var fs = require("fs");
 var service = require("os-service");
 var mercadoLivre = require('./Mercado Livre/Principal/principal.js');
 var zoom = require('./Zoom/Principal/principal.js');
+const killChrome = require('kill-chrome');
 
 function usage() {
-	var urlBase = client.ObterURLBase();
-	client.ObterSites(urlBase, executarMonitoramento);
+	killChrome().then(function () {
+		var urlBase = client.ObterURLBase();
+		client.ObterSites(urlBase, executarMonitoramento);
+	});
 }
 
 function executarMonitoramento(sites) {
@@ -15,9 +18,16 @@ function executarMonitoramento(sites) {
 			mercadoLivre.ExecutarMonitoramento(site);
 		}
 		if (site.nm_site == "ZOOM") {
-			zoom.ExecutarMonitoramento(site);
+			zoom.ExecutarMonitoramento(site, false);
+		}
+
+		if (site.nm_site == "ZOOM") {
+			zoom.ExecutarMonitoramento(site, true);
 		}
 	});
+	
+	var urlBase = client.ObterURLBase();
+	client.AnalisarOfertas(urlBase);
 }
 
 if (process.argv[2] == "--add" && process.argv.length >= 4) {
@@ -49,12 +59,12 @@ if (process.argv[2] == "--add" && process.argv.length >= 4) {
 	});
 
 	var logStream = fs.createWriteStream(process.argv[1] + ".log");
-
+	var intervalo = Math.floor(Math.random() * 8000000) + 5000000;
 	// Here is our long running code, simply print a date/time string to
 	// our log file
 	setInterval(function () {
 		usage();
-	}, 7200000);
+	}, intervalo);
 } else {
 	usage();
 }

@@ -4,12 +4,12 @@ var client = new Client();
 
 module.exports = {
     ObterURLBase: function () {
-        return "http://localhost:62593/api/Mercantile";
+        return "http://localhost:85/api/Mercantile";
     },
-    ObterProdutos: async function (id_site, URLBase, callback) {
+    ObterProdutos: async function (id_site, URLBase, frete, callback) {
         // direct way
         client.get(URLBase + "/ObterProdutosParaPesquisa?id_site=" + id_site, function (produtos, response) {
-            callback(produtos);
+            callback(produtos, frete);
         });
 
     },
@@ -30,6 +30,20 @@ module.exports = {
         };
 
         client.post(URLBase + "/EnviarOfertas", args, function (response) {
+
+        });
+
+    },
+    AnalisarOfertas: async function (URLBase) {
+        // direct way
+
+        var args = {            
+            headers: {
+                "Content-Type": "application/json"
+            }
+        };
+
+        client.post(URLBase + "/AnalisarOfertas", args, function (response) {
 
         });
 
