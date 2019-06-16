@@ -5,7 +5,6 @@ C:\Users\FamiliaVepo\Desktop\Workspace\Mercantile\Backend\bin\Release\EntityFram
 C:\Users\FamiliaVepo\Desktop\Workspace\Mercantile\Backend\bin\Release\EntityFramework.SqlServer.dll
 C:\Users\FamiliaVepo\Desktop\Workspace\Mercantile\Backend\bin\Release\EntityFramework.xml
 C:\Users\FamiliaVepo\Desktop\Workspace\Mercantile\Backend\bin\Release\EntityFramework.SqlServer.xml
-C:\Users\FamiliaVepo\Desktop\Workspace\Mercantile\Backend\obj\Release\Backend.csprojAssemblyReference.cache
 C:\Users\FamiliaVepo\Desktop\Workspace\Mercantile\Backend\obj\Release\Backend.csproj.CoreCompileInputs.cache
 C:\Users\FamiliaVepo\Desktop\Workspace\Mercantile\Backend\obj\Release\Backend.csproj.CopyComplete
 C:\Users\FamiliaVepo\Desktop\Workspace\Mercantile\Backend\obj\Release\Backend.dll

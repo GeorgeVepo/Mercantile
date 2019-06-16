@@ -13,10 +13,10 @@ module.exports = {
         });
 
     },
-    ObterSites: async function (URLBase, callback) {
+    ObterSites: async function (URLBase, callback, processo) {
         // direct way
         client.get(URLBase + "/ObterSitesAtivos", function (sites, response) {
-            return callback(sites);
+            return callback(sites, processo);
         });
     },
     EnviarOfertas: async function (URLBase, ofertas) {

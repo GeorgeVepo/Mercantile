@@ -9,7 +9,7 @@
             "type": "node",
             "request": "launch",
             "name": "Launch Program",
-            "program": "C:/Users/Richard Vepo/Documents/GitHub/Mercantile/Puppeteer/app.js"
+            "program": "C:/Users/FamiliaVepo/Desktop/Workspace/Mercantile/Puppeteer/app.js"
         }
     ]
 }
