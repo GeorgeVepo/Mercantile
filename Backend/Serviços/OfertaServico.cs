@@ -87,10 +87,10 @@ namespace Backend.Serviços
                 }
                 else
                 {                    
-                    MailMessage mail = new MailMessage("mercantilevepo@gmail.com", "george.vepog@gmail.com, thati.oliveira14@gmail.com, richardvepogg@gmail.com");
+                    MailMessage mail = new MailMessage("mercantileaviso@gmail.com", "george.vepog@gmail.com, thati.oliveira14@gmail.com, richardvepogg@gmail.com");
                     SmtpClient client = new SmtpClient();
                     client.UseDefaultCredentials = false;
-                    client.Credentials = new NetworkCredential("mercantilevepo@gmail.com", "mercantile123!");
+                    client.Credentials = new NetworkCredential("mercantileaviso@gmail.com", "mercantile123!");
                     client.Port = 25;
                     client.DeliveryMethod = SmtpDeliveryMethod.Network;
                     client.Host = "smtp.gmail.com";

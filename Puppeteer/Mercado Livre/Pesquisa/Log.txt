@@ -1,0 +1,10 @@
+
+09/07/2019 21:6:28.361
+Mercado Livre 
+Sansung galaxy S9 plus 128 gb
+Navigation Timeout Exceeded: 10000ms exceeded
+
+20/09/2019 14:5:0.241
+Mercado Livre 
+Notebook Lenovo Intel Core i5 8250U 15,6" 8GB HD 1 TB
+waiting for selector ".short-description__form" failed: timeout 10000ms exceeded

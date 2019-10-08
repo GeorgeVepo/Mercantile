@@ -1,4 +1,5 @@
-var cmd = require('node-cmd'); 
+//var cmd = require('node-cmd'); 
+var shell = require('shelljs');
 
 module.exports = {
     format: function () {
@@ -23,35 +24,62 @@ module.exports = {
         today = dd + '/' + mm + '/' + yyyy + ' ' + hh + ':' + MM + ':' + ss + '.' + mmm
         return today;
     },
-    tryConnection: async function(page, url, selector){
-        var tentativas = 5;
-        while(tentativas > 0) {
-            await new Promise(resolve => setTimeout(resolve, 10000)); 
-            cmd.run('"C:\\Program Files (x86)\\HMA! Pro VPN\\bin\\HMA! Pro VPN.exe" -connect');
+    tryConnection: async function(page, url, selector, tentativas){ 
+        while(tentativas > 0){
             try {
                 await page.goto(url, {
-                    timeout: 10000
+                    timeout: 20000
                 });
-    
+
                 await page.waitForSelector(selector, {
-                    timeout: 10000
+                    timeout: 20000
                 })
-            } catch (e) {
-                tentativas = tentativas - 1;
-                cmd.run('"C:\\Program Files (x86)\\HMA! Pro VPN\\bin\\HMA! Pro VPN.exe" -changeip');
+
+                break;                
+            } catch (e) {   
+                tentativas -= 1;
+                if(tentativas <= 0){
+                    throw e;
+                }     
+                shell.exec('sh /home/mercantile/servico/Util/hma-scheduled-runner.sh');
                 await new Promise(resolve => setTimeout(resolve, 30000)); 
-                await page.goto(url, {
-                    timeout: 10000
+            }                            
+        }            
+    },
+    connectToVPN: async function(page){   
+        shell.exec('sh /home/mercantile/servico/Util/hma-scheduled-runner.sh');
+        await new Promise(resolve => setTimeout(resolve, 30000));
+        var tentativas = 0;
+        while(tentativas <= 5){
+            try {
+                await page.goto('https://www.google.com/', {
+                    timeout: 20000
                 });
     
-                await page.waitForSelector(selector, {
-                    timeout: 10000
+                await page.waitForSelector('#hplogo', {
+                    timeout: 20000
                 })
-                continue;
-            }
-            break;
-        }
-       
+
+                break;
+    
+            } catch (e) {  
+                tentativas += 1;      
+                if(tentativas >= 5){
+                    e.message = 'Não conseguiu conectar a internet.';
+                    page.close();
+                    throw e;
+                }
+                shell.exec('sh /home/mercantile/servico/Util/hma-scheduled-runner.sh');
+                await new Promise(resolve => setTimeout(resolve, 30000));
+            }               
+        } 
+     
+    },
+    disconnectToVPN: async function(){
+        shell.exec('echo 9424 | sudo -S killall openvpn');
+        //cmd.run('taskkill /s localhost  /u Administrador /p 9424367mtp  /f /im "HMA! Pro VPN.exe"');
+        //cmd.run('net stop "OpenVPNService"');
+        return await new Promise(resolve => setTimeout(resolve, 10000)); 
     }
 
 }

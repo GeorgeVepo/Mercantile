@@ -4,12 +4,12 @@ var client = new Client();
 
 module.exports = {
     ObterURLBase: function () {
-        return "http://localhost:85/api/Mercantile";
+        return "http://172.31.224.1:85/api/Mercantile";
     },
-    ObterProdutos: async function (id_site, URLBase, frete, callback) {
+    ObterProdutos: async function (id_site, URLBase, callback) {
         // direct way
         client.get(URLBase + "/ObterProdutosParaPesquisa?id_site=" + id_site, function (produtos, response) {
-            callback(produtos, frete);
+            callback(produtos);
         });
 
     },

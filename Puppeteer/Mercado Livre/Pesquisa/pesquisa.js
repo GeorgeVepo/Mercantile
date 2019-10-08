@@ -10,14 +10,7 @@ module.exports = {
         var listaOfertas = [];
         var page = await browser.newPage();
 
-        /*   await page.authenticate({ 
-            username: 'lum-customer-hl_350322be-zone-datacenter-country-br' , 
-            password:'67wktqwx5d8k' 
-        });      
- */
-
         await page._client.send('Network.clearBrowserCookies');
-
 
         await page.setRequestInterception(true);
 
@@ -42,16 +35,8 @@ module.exports = {
             listaOfertas = await this.ExecutarPesquisa(produto, urlSite, browser, page);
         } catch (e) {
             today = util.getDate();
-            fs.appendFile('C://MercantileAPI//Log.txt', "\r\n" + today + "\r\nMercado Livre \r\n" + produto.nm_produto + "\r\n" + e.message + "\r\n", function (err) {});
-
-            if (tentativas <= 5) {
-                tentativas += 1;
-                listaOfertas = this.PesquisarOfertas(produto, urlSite, browser);
-
-                page.close();
-                return listaOfertas;
-            }
-
+            fs.appendFile(__dirname + '//Log.txt', "\r\n" + today + "\r\nMercado Livre \r\n" + produto.nm_produto + "\r\n" + e.message + "\r\n", function (err) { });
+           
             page.close();
             return "pesquisa indisponivel";
         }
@@ -60,6 +45,7 @@ module.exports = {
         return listaOfertas;
     },
     ExecutarPesquisa: async function (produto, urlSite, browser, page) {
+        await util.connectToVPN(page);
         var Filtros = produto.ListaFiltros;
         var nomeProduto = Filtros.filter(filtro => filtro.nm_filtro == "nomeProduto")[0];
         var ordenacao = Filtros.filter(filtro => filtro.nm_filtro == "ordenacao")[0];
@@ -77,8 +63,8 @@ module.exports = {
             melhoresVendedores.ds_valor);
 
         await util.sleep(Math.floor(Math.random() * 3000) + 1000);
-        await util.tryConnection(page, urlPesquisa, '.item__price');
-        
+        await util.tryConnection(page, urlPesquisa, '.item__price', 2);
+
         var listTitle = await page.$$('.main-title');
         var listPrices = await page.$$('.item__price');
         var listUrl = await page.$$('.item__title > a');
@@ -109,15 +95,7 @@ module.exports = {
         var element = null;
 
         var pageOferta = await browser.newPage();
-        /*  await pageOferta.authenticate({ 
-            username: 'lum-customer-hl_350322be-zone-datacenter-country-br' , 
-            password:'67wktqwx5d8k' 
-        });    */
 
-        /*   await pageOferta.setCacheEnabled(false);
-    
-        await pageOferta.setRequestInterception(true);
- */
         pageOferta.on('request', (req) => {
             const url = req.url();
             if (req.resourceType() === 'image') {
@@ -187,8 +165,13 @@ module.exports = {
                 await pageOferta._client.send('Network.clearBrowserCookies');
 
                 await util.sleep(Math.floor(Math.random() * 3000) + 1000);
-                await util.tryConnection(pageOferta, "https://www.mercadolivre.com.br/navigation/addresses-hub?mode=embed&flow=true&go=" + url, '.andes-form-control__field');
-               
+
+                try {
+                    await util.tryConnection(pageOferta, "https://www.mercadolivre.com.br/navigation/addresses-hub?mode=embed&flow=true&go=" + url, '.andes-form-control__field', 2);
+                } catch (e) {
+                    continue;
+                }
+
                 await pageOferta.focus('.andes-form-control__field');
                 await pageOferta.evaluate(() => document.querySelector('.andes-form-control__field').value = '88110630');
                 element = await pageOferta.$('button');
