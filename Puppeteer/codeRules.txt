@@ -1,0 +1,7 @@
+Regras de Código
+
+1 - Pastas e nomes de arquivos devem começar com letra minúscula e ser camelcase;
+2 - Classes devem começar com letra maíuscula e ser camelcase;
+3 - Propriedades devem começar com letra minúscula e ser camelcase;
+4 - As funções devem começar com letra maíuscula e ser camelcase;
+5 - Propriedades das funções devem começar com letra minúscula e ser camelcase;

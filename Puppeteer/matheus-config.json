@@ -1,0 +1,22 @@
+{
+    "values" :[
+
+        { "key": "PathProd", "value" : "C:\\VepoIT\\CoreaRoulette"},      
+        { "key": "IsProd", "value" : false},
+        { "key": "IsTest", "value" : false},
+        { "key": "ChromePath", "value" : "C:\\VepoIT\\Chrome\\Application\\chrome"},
+        { "key": "ChromeUserPath", "value" : "C:\\VepoIT\\chrome-user-data"},
+        { "key": "ChromeCleanPath", "value" : "C:\\VepoIT\\chrome-clean"},        
+        { "key": "Resolucao", "value" : {"width": 1366,"height": 600}},
+        
+        { "key": "GetAnyMessage", "value" : false},
+        { "key": "TestUrl", "value" : "https://br.betano.com/casino/live/games/who-wants-to-be-a-millionaire-roulette/4905/tables/105792/"},        
+        { "key": "PorcentagemAposta", "value" : 7.5},
+        { "key": "Martingale", "value" : 1},
+        { "key": "Usuario", "value" : "mh894412@gmail.com"},
+        { "key": "Senha", "value" : "matheus2002"},
+        { "key": "TelegramUrl", "value" : "https://web.telegram.org/k/#-1409290558"}
+
+    ]
+
+}

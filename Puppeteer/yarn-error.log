@@ -1,0 +1,51 @@
+Arguments: 
+  C:\Program Files\nodejs\node.exe C:\Users\george.melo.vepo\AppData\Roaming\npm\node_modules\yarn\bin\yarn.js add --dev string-replace-loader
+
+PATH: 
+  C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Windows\System32\OpenSSH\;C:\Program Files\Microsoft SQL Server\150\Tools\Binn\;C:\Program Files\Microsoft SQL Server\Client SDK\ODBC\170\Tools\Binn\;C:\Program Files\dotnet\;C:\Program Files (x86)\Microsoft SQL Server\150\Tools\Binn\;C:\Program Files\Microsoft SQL Server\150\DTS\Binn\;C:\Program Files (x86)\Microsoft SQL Server\150\DTS\Binn\;C:\Program Files\Azure Data Studio\bin;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\WINDOWS\System32\OpenSSH\;C:\Users\george.melo.vepo\AppData\Roaming\nvm;C:\Program Files\nodejs;C:\Users\george.melo.vepo\AppData\Local\Microsoft\WindowsApps;C:\Users\george.melo.vepo\.dotnet\tools;C:\Users\george.melo.vepo\AppData\Local\Programs\Git\cmd;C:\Program Files\Azure Data Studio\bin;C:\Users\george.melo.vepo\AppData\Local\Programs\Microsoft VS Code\bin;C:\Users\george.melo.vepo\AppData\Roaming\nvm;C:\Program Files\nodejs;C:\Users\george.melo.vepo\AppData\Roaming\npm
+
+Yarn version: 
+  1.22.19
+
+Node version: 
+  16.16.0
+
+Platform: 
+  win32 x64
+
+Trace: 
+  Error: ENOENT: no such file or directory, copyfile 'C:\Users\george.melo.vepo\AppData\Local\Yarn\Cache\v6\npm-shallow-clone-3.0.1-8f2981ad92531f55035b01fb230769a40e02efa3-integrity\node_modules\shallow-clone\index.js' -> 'C:\Projects\Projeto Corea Roulette\node_modules\clone-deep\node_modules\shallow-clone\index.js'
+
+npm manifest: 
+  {
+      "scripts": {
+          "build": "npm i && webpack --config webpack.prod.js"
+      },
+      "dependencies": {
+          "bufferutil": "^4.0.6",
+          "clone": "^2.1.2",
+          "merge-deep": "file:libraries/merge-deep",
+          "mixin": "^0.2.0",
+          "puppeteer": "^15.4.0",
+          "puppeteer-extra": "^3.3.4",
+          "puppeteer-extra-plugin-stealth": "^2.11.0",
+          "string-replace-loader": "^3.1.0",
+          "utf-8-validate": "^5.0.9"
+      },
+      "devDependencies": {
+          "node-windows": "1.0.0-beta.6",
+          "ts-loader": "^9.3.1",
+          "ts-node": "^10.9.1",
+          "typescript": "^4.7.4",
+          "webpack": "^5.73.0",
+          "webpack-cli": "^4.10.0",
+          "webpack-dev-server": "^4.9.3",
+          "webpack-merge": "^5.8.0"
+      }
+  }
+
+yarn manifest: 
+  No manifest
+
+Lockfile: 
+  No lockfile

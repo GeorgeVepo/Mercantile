@@ -1,0 +1,23 @@
+{
+    "values" :[
+
+        { "key": "PathProd", "value" : "C:\\VepoIT\\CoreaRoulette"},      
+        { "key": "IsProd", "value" : true},    
+        { "key": "IsDebug", "value" : false},
+        { "key": "IsTest", "value" : false},
+        { "key": "ChromePath", "value" : "C:\\Projetos\\Chrome\\Application\\chrome"},
+        { "key": "ChromeUserPath", "value" : "C:\\Projetos\\Chrome\\chrome-user-data"},
+        { "key": "ChromeCleanPath", "value" : "C:\\Projetos\\Chrome\\chrome-clean"},
+        { "key": "Resolucao", "value" : {"width": 1920,"height": 900}},
+        
+        { "key": "GetAnyMessage", "value" : false},
+        { "key": "TestUrl", "value" : "https://twitter.com/search?q=petrobr%C3%A1s%20min_replies%3A49%20since%3A2023-11-01&src=typed_query"},        
+        { "key": "ValorAposta", "value" : 5},
+        { "key": "Martingale", "value" : 0},
+        { "key": "Usuario", "value" : "mh894412@gmail.com"},
+        { "key": "Senha", "value" : "matheus2002"},
+        { "key": "TwitterUrl", "value" : "https://twitter.com/search?q=petrobr%C3%A1s%20min_replies%3A49%20since%3A2023-11-01&src=typed_query"}
+
+    ]
+
+}
